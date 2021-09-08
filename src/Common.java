@@ -11,37 +11,25 @@ public class Common {
         char[] a_char = a.toCharArray();
         char[] b_char = b.toCharArray();
 
-        // make a hashset for each array of characters, excluding ' '
-        HashSet<Character> a_set = new HashSet<>();
-        for(char i : a_char){
-            if(i != ' ') {
-                a_set.add(i);
-            }
-        }
-        HashSet<Character> b_set = new HashSet<>();
-        for(char k : b_char){
-            if(k != ' ') {
-                b_set.add(k);
-            }
-        }
-
-        // initialize arrayLists for both HashSets
+        // initialize arrayLists for both char arrays
         ArrayList<Character> a_list = new ArrayList<>();
         ArrayList<Character> b_list = new ArrayList<>();
 
-        // convert each HashSet to ArrayList
-        for(char charA : a_set){
+        // convert each char array to ArrayList
+        for(char charA : a_char){
             a_list.add(charA);
         }
-        for(char charB : b_set){
+        for(char charB : b_char){
             b_list.add(charB);
         }
 
         // loop through each element in a_set and see if b_set contains it
-        for(char k : a_list){
-            // if both arrayLists contain the element increase count by one
-            if( b_list.contains(k) ){
+        for(int k = 0; k < a_list.size(); k += 1){
+            // if both arrayLists contain the element increase count by one and remove the element
+            if( b_list.contains(a_list.get(k)) ){
                 num_shared += 1;
+                // get index of where the shared element is and remove the element
+                b_list.remove(b_list.indexOf(a_list.get(k)));
             }
         }
         //System.out.println(num_shared);
@@ -49,8 +37,8 @@ public class Common {
     }
 
     /*public static void main(String[] args){
-        String a_ = "horse";
-        String b_ = "moose";
+        String a_ = "toots";
+        String b_ = "stout";
         count(a_, b_);
     }*/
 
